@@ -1,0 +1,45 @@
+.Ticket-text{
+    direction: rtl!important;
+    text-align: justify;
+    line-height: 2;
+}
+.boxQuestion{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #aad7de;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*flex-direction: initial;*/
+    margin-bottom: 15px;
+}
+.boxAnswer{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #ace784;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    /*display: flex;*/
+    /*align-items: center;*/
+    margin-bottom: 15px;
+}
+.infoSender{
+    direction: rtl;
+    text-align: right;
+    font-family: IRANSansWeb_FaNum,serif;
+    font-size: 14px;
+}
+.textNotif{
+    text-align: right;
+    direction: rtl;
+    font-size: 13px;
+    line-height: 2;
+    word-break: break-word;
+    font-family: IRANSansWeb,serif;
+    color: #0b1524;
+}

@@ -1,0 +1,22 @@
+.myContainer{
+  width: 100%;
+  height: 100%;
+  padding: 35px;
+  box-sizing: border-box;
+  background: #c5c8dc;
+  position: relative;
+  /*border-radius: 5px;*/
+}
+.myBackDoor{
+  z-index: 10000000000000!important;
+}
+
+
+@media screen and (max-width: 700px) {
+  .myContainer{
+    padding: 0;
+  }
+  .myCol{
+    margin-bottom:30px;
+  }
+}

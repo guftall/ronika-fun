@@ -1,0 +1,42 @@
+image: node:12
+
+stages:
+    - build
+    - deploy
+
+build:
+    stage: build
+    script:
+        - echo "Building staging package"
+        - npm install
+        - npm run build:staging
+        - echo "Build successful"
+    artifacts:
+        expire_in: 1 week
+        paths:
+            - build
+    only:
+        - master
+    when: manual
+
+buildproduction:
+    stage: build
+    script:
+        - echo "Building production package"
+        - npm install
+        - npm run build:production
+        - echo "Build successful"
+    artifacts:
+        expire_in: 1 week
+        paths:
+            - build
+    when: manual
+    only:
+        - master
+
+deploy to site:
+    image: curlimages/curl
+    stage: deploy
+    script:
+        - curl -X POST "https://dev.medical.guftall.ir/$API_KEY/deploy_adminpanel"
+    when: manual

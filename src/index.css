@@ -1,0 +1,569 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  src: url("assets/fonts/IRANSansWeb.ttf");
+  font-family: IRANSansWeb;
+}
+@font-face {
+  src: url("assets/fonts/IRANSansWeb_Bold.ttf");
+  font-family: IRANSansWeb_Bold;
+}
+@font-face {
+  src: url("assets/fonts/IRANSansWeb_Light.ttf");
+  font-family: IRANSansWeb_Light;
+}
+@font-face {
+  src: url("assets/fonts/IRANSansWeb_Medium.ttf");
+  font-family: IRANSansWeb_Medium;
+}
+@font-face {
+  src: url("assets/fonts/IRANSansWeb_UltraLight.ttf");
+  font-family: IRANSansWeb_UltraLight;
+}
+@font-face {
+  src: url("assets/fonts/IRANSansWeb(FaNum).ttf");
+  font-family: IRANSansWeb_FaNum;
+}
+html,body{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  font-family: IRANSansWeb,serif;
+}
+
+.buttonTable{
+  font-family:IRANSansWeb,serif!important;
+}
+button{
+  outline: none;
+  font-family: IRANSansWeb,serif;
+  cursor: pointer;
+}
+.MuiAlert-message{
+  font-family: IRANSansWeb,serif;
+  direction: rtl;
+}
+.showEmpty{
+  text-align: center;
+  padding-top: 50px;
+  font-size: 14px;
+}
+.containerAll{
+  width: 100%;
+  height: 100%;
+  padding:10px 15px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+.topSection{
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+.myMenu{
+  font-family: IRANSansWeb,serif!important;
+  font-size: 10px!important;
+}
+.contentSection{
+  width: 100%;
+  padding: 15px 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.backPage{
+  position: absolute!important;
+  top: 0;
+  left: 0;
+  background: #ffffff!important;
+  color: #ff6e6a!important;
+  display: none!important;
+}
+.noToolBar{
+  height: 50px;
+
+}
+.toolBar{
+  height: 70px;
+}
+.bigToolBar{
+  height: 70px;
+}
+.titleAll{
+  text-align: center;
+  font-size: 16px;
+}
+.bigHeight{
+  height: calc(100% - 50px);
+}
+.smallHeight{
+  height: calc(100% - 70px);
+}
+.tinyHeight{
+  height: calc(100% - 70px);
+}
+.titleDialog{
+  text-align: center;
+  font-family: IRANSansWeb_bold,serif;
+  font-size: 16px;
+}
+.messageDialog{
+  text-align: center;
+  font-family: IRANSansWeb_Light,serif;
+  font-size: 13px;
+  color: #000000;
+  direction: rtl;
+}
+.highcharts-credits{
+  display: none!important;
+}
+.buttonDialog{
+  font-family: IRANSansWeb_Light,serif!important;
+}
+.myCol{
+  float: right!important;
+  height: 100%!important;
+  /*margin-bottom: 10px;*/
+
+}
+.myColType{
+  height: 100%!important;
+  margin-bottom: 15px;
+}
+
+.myRow{
+  width: 100%;
+  height: 90px;
+}
+.myChip{
+  font-family: IRANSansWeb,serif!important;
+  font-size: 12px!important;
+}
+.activeStatus{
+  color: #26de64 !important;
+  border: 1px solid #26de64!important;
+}
+.errorSpan{
+  color: #c91c4d;
+}
+
+button,a{
+  outline: none!important;
+  text-decoration: none!important;
+}
+
+
+.Statistics-chartBox div{
+  height: 100%!important;
+}
+.highcharts-legend-item{
+  font-family: IRANSansWeb,serif!important;
+}
+/* custom style chart*/
+.highcharts-container,.highcharts-root{
+  height: 100%!important;
+}
+.highcharts-title,
+.highcharts-axis-labels
+{
+  font-family: IRANSansWeb,serif;
+  font-size: 14px!important;
+}
+.highcharts-axis-labels text,
+.highcharts-yaxis-labels text,
+.highcharts-label text,
+.highcharts-tooltip text
+{
+  font-family: IRANSansWeb_FaNum,serif;
+  font-size: 14px!important;
+}
+.highcharts-axis-labels text,
+.highcharts-label text,
+.highcharts-tooltip text {
+  font-size: 11px!important;
+}
+.highcharts-axis{
+  display: none;
+}
+
+/*########################*/
+.customSearch{
+  float: right;
+  font-family: IRANSansWeb,serif!important;
+  font-size: 14px!important;
+  width: 100%!important;
+}
+.customButtonRegister{
+  float: left;
+  width: fit-content;
+  height: 30px;
+  border: none;
+  background: transparent;
+  font-size: 13px!important;
+  border-radius: 5px!important;
+  color: #ff6e6a!important;
+}
+.customButtonCancell{
+  color: #e8cc3e !important;
+}
+.customButtonActive{
+  color: #42e81a !important;
+}
+.customButtonDelete{
+  color: #c91c4d!important;
+}
+
+.customButtonSuspension{
+  color: #e83e6e !important;
+}
+.sectionTable{
+  width: 100%;
+  height: calc(100% - 45px);
+  margin-bottom: 10px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+}
+.sectionPagination{
+  width: fit-content;
+  margin: 0 auto;
+  height: 35px;
+}
+.tableCustom{
+  width: 100%;
+}
+.buttonCustomTable{
+  font-family: IRANSansWeb,serif!important;
+  font-size: 12px!important;
+  color: black!important;
+}
+.editButton{
+  color: #3284de !important;
+}
+.changeCounseling{
+  color: #8cdd0a !important;
+}
+.rewNewCounseling{
+  color: #0addbd !important;
+}
+.removeButton{
+  color: #c91c4d !important;
+}
+.tableHeaderCustom{
+  background:#eef2f5;
+  border-radius: 5px!important;
+}
+.titleModalInformation{
+  font-family: IRANSansWeb,serif!important;
+  margin: 0 auto!important;
+  font-size: 15px!important;
+}
+.moreInfo{
+  color: #ff6e6a!important;
+}
+.tableCellHeader{
+  font-family: IRANSansWeb_Medium,serif!important;
+  font-size: 13px!important;
+  color: black!important;
+}
+.tableCellBody{
+  font-family: IRANSansWeb,serif!important;
+  font-size: 12px!important;
+  color: black!important;
+  margin-bottom: 20px!important;
+}
+
+.sectionInput{
+  width: 100%;
+  padding-top: 10px;
+  box-sizing: border-box;
+  height: calc(100% - 60px);
+  /*border: 1px solid red;*/
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+.sectionAccept{
+  width: 100%;
+  height: 45px;
+  /*border: 1px solid black;*/
+}
+.submitButton{
+  height: 100%;
+  float: right;
+  border-color: #1cd0c5!important;
+  color: #1cd0c5!important;
+  font-family: IRANSansWeb,serif!important;
+  font-size: 14px!important;
+  margin-left: 10px!important;
+}
+.backHomeBtn{
+  height: 100%;
+  float: right;
+  border-color: #ff6e6a !important;
+  color: #ff6e6a !important;
+  font-family: IRANSansWeb,serif!important;
+  font-size: 14px!important;
+
+}
+.sectionImage{
+  width: 200px;
+  margin: 0 auto;
+  height: 70px;
+}
+.myInput{
+  width: 100%!important;
+  text-align: right;
+  direction: rtl;
+  font-size: 14px!important;
+  color: black!important;
+}
+.myInput .MuiInputBase-root{
+  height: 35px!important;
+}
+.myLabel{
+  line-height: 1;
+  text-align: right!important;
+  font-size: 14px!important;
+  float: right!important;
+  font-family: IRANSansWeb,serif!important;
+  width: 100%!important;
+}
+.Calendar{
+  top: 30px;
+  width: 100%!important;
+}
+.MuiInputBase-root{
+  font-family: IRANSansWeb,serif!important;
+  font-size: 13px!important;
+}
+.multiLine{
+  min-height: 100px!important;
+  width: 100%!important;
+  text-align: right;
+  direction: rtl;
+  font-size: 14px!important;
+  color: black!important;
+}
+.titleComment{
+  text-align: right;
+  direction: rtl;
+  font-size: 16px;
+  font-family: IRANSansWeb_Medium,serif;
+  margin-bottom: 15px;
+  color: black;
+}
+.Statistics-textInfo{
+  direction: rtl;
+  text-align: right;
+  font-size: 14px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: IRANSansWeb,serif;
+}
+.imageUser{
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px rgba(77, 179, 148, 0.3);
+  border-radius: 8px;
+}
+.uploadRow{
+  margin-bottom: 30px;
+}
+
+.uploadRow .cl{
+  position: relative;
+  top: 30px;
+}
+.sectionUpload{
+  width: 100px;
+  /*border: 1px solid red;*/
+  box-sizing: border-box;
+  position: relative;
+
+}
+.uploadButton{
+  font-family: IRANSansWeb,serif!important;
+  display: block!important;
+  margin-right: auto;
+  margin-left: auto;
+  float: none!important;
+}
+.labelUpload{
+  width: 90px;
+  margin: 0 auto!important;
+  display: block;
+  text-align: center;
+}
+.mySelectCustom{
+  width: 100%!important;
+  float: right;
+  text-align: right!important;
+  direction: rtl!important;
+  font-family: IRANSansWeb,serif!important;
+  font-size: 14px!important;
+}
+.MuiMenu-list li{
+  font-family: IRANSansWeb,serif!important;
+  font-size: 13px!important;
+  text-align: right!important;
+  direction: rtl!important;
+}
+.bodyDialog{
+  width: 100%;
+  height: calc(100% - 56px);
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 20px;
+}
+.persianNumber{
+  font-family: IRANSansWeb_FaNum,serif!important;
+}
+.centerText{
+  text-align: center;
+}
+.leftText{
+  text-align: left;
+}
+.rightText{
+  text-align: right;
+}
+.myColInput{
+  height: auto;
+  float: right;
+  margin-bottom: 50px;
+}
+.myBackDoor{
+  z-index: 10000000000000!important;
+}
+.myClear{
+  clear: both;
+}
+.customSize{
+  width: calc(100% - 85px)!important;
+}
+.MuiFormControlLabel-label{
+  font-family: IRANSansWeb,serif!important;
+  font-size: 11px!important;
+}
+.sectionErrors{
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+
+}
+.errors{
+  text-align: right;
+  direction: rtl;
+  font-size: 13px;
+  line-height: 2;
+}
+.initial{
+  color: #e26235 !important;
+  border: 1px solid #e26235!important;
+}
+.successPay{
+  color: #3de218!important;
+  border: 1px solid #3de218!important;
+}
+.errors img{
+  width: 20px;
+  height: auto;
+  float: right;
+  margin-left: 10px;
+}
+#root{
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+}
+
+
+@media screen and (max-width: 991px){
+  .uploadRow{
+    margin-bottom: 0;
+  }
+  .uploadRow .cl{
+    position: relative;
+    top: 0;
+  }
+  .sectionUpload{
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+}
+@media screen and (max-width: 767px){
+  .bigToolBar{
+    height: 110px;
+  }
+  .myCol{
+    height: auto!important;
+  }
+  .tinyHeight{
+    height: calc(100% - 110px);
+  }
+}
+@media screen and (max-width: 700px){
+  .containerAll{
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .studentTable{
+    height: calc(100% - 75px);
+  }
+  .studentPage{
+    height: 75px;
+  }
+  .titleModalInformation{
+    font-size: 12px!important;
+  }
+  .backPage{
+    display: flex!important;
+  }
+  .tableCellHeader,.tableCellBody{
+    font-size: 10px!important;
+    padding-right: 2px!important;
+  }
+  .tableCellBody,.buttonCustomTable{
+    font-size: 9px!important;
+  }
+  .iconTable{
+
+    font-size: 15px!important;
+  }
+  .submitButton{
+    float: none;
+    width: 100%!important;
+    font-size: 12px!important;
+  }
+  .backHomeBtn{
+    display: none!important;
+  }
+  .submitButton{
+    margin-left: 0!important;
+  }
+  .myLabel{
+    font-size: 11px!important;
+  }
+  .myInput{
+    font-size: 10px!important;
+  }
+
+
+}
+@media screen and (max-width: 500px){
+  .highcharts-axis-labels text{
+    font-size: 10px!important;
+  }
+  .hideCell{
+    display: none!important;
+  }
+  .customButtonRegister{
+   font-size: 11px!important;
+  }
+
+}
