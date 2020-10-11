@@ -46,7 +46,7 @@ class Main extends React.Component {
                     <div className="sectionHeaderPanel">
                         <Header history={this.props.history} />
                     </div>
-                    <div className="renderPagesSection">
+                    <div className="renderPagesSection container-fluid">
                         <ContentPage history={this.props.history} />
                     </div>
                 </div>

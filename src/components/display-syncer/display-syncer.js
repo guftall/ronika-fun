@@ -136,7 +136,7 @@ class DisplaySyncer extends React.Component {
 
         const elem = this.getFun()
         return (
-            <div className="containerAll">
+            <div className="containerAll h-100" style={{display: 'flex'}}>
                 {elem}
             </div>
         )

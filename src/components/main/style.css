@@ -16,12 +16,12 @@
     border-top-right-radius: 35px;
 }
 .sectionPanel{
-    width: calc(100% - 250px);
+    width: calc(100% - 50px);
     height: 100%;
     background: #eef2f5;
     background-size: cover;
-    border-bottom-left-radius: 35px;
-    border-top-left-radius: 35px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
     padding: 15px;
     box-sizing: border-box;
 }
