@@ -39,7 +39,15 @@ class DisplaySyncer extends React.Component {
                 window.location.reload()
             } else if (cmd.type === CommandTypes.ResumeGenerator) {
 
-                // funGenerator.resumeAfterInfinite()
+
+                if (this.currentExecuting == undefined || this.currentExecuting.fun.duration != 0) {
+                    throw new Error('not paused on infinite fun')
+                } else if (this.funQueue.length == 0) {
+                    console.log('resume called, but there is no fun to execute')
+                    return
+                }
+
+                this.onExecuteQueueFun()
             } else if (cmd.type === CommandTypes.Fun) {
 
                 const fun = cmd.parseCommandFun()
@@ -47,30 +55,33 @@ class DisplaySyncer extends React.Component {
             }
         })
     }
+    onFunReceived(fun) {
+        console.log(fun)
+        this.pushFunToQueue(fun)
+    }
     pushFunToQueue(fun) {
         this.funQueue.push({
             createdAt: new Date(),
             fun: fun
         })
 
-        if (this.currenExecuting == undefined) {
+        if (this.currentExecuting == undefined) {
             this.onExecuteQueueFun()
         }
     }
     onExecuteQueueFun() {
         if (this.funQueue.length == 0) {
-            this.currenExecuting = undefined
+            this.currentExecuting = undefined
             console.log('empty fun queue')
             return
         }
 
         const fun = this.funQueue.splice(0, 1)[0]
         fun.startedAt = new Date()
-        this.currenExecuting = fun
-
+        this.currentExecuting = fun
 
         // if fun duration is zero next fun should start explicity
-        if (fun.duration === 0) {
+        if (fun.fun.duration === 0) {
 
         } else {
             this.timerId = setTimeout(() => {
@@ -91,7 +102,7 @@ class DisplaySyncer extends React.Component {
         return <FunColor color={fun.variables.color} />
     }
     createFunButton(fun) {
-        return <FunButton text={fun.variables.text} onClick={fun.variables.onClick} />
+        return <FunButton text={fun.variables.text} onClick={fun.onClick} />
     }
     createFunImage(fun) {
         return <FunImage url={fun.variables.url} />
@@ -128,15 +139,11 @@ class DisplaySyncer extends React.Component {
             }
         }
     }
-    onFunReceived(fun) {
-        console.log(fun)
-        this.pushFunToQueue(fun)
-    }
     render() {
 
         const elem = this.getFun()
         return (
-            <div className="containerAll h-100" style={{display: 'flex'}}>
+            <div className="containerAll h-100" style={{ display: 'flex' }}>
                 {elem}
             </div>
         )

@@ -5,16 +5,16 @@ class FunButton extends React.Component {
 
     render() {
         return (
-            <Button
+            <button
                 style={{
                     height: '60px',
                     width: '100px',
                     margin: 'auto auto',
                 }}
                 className="btn btn-info"
-                onClick={this.props.onClick}>
-                    {this.props.text}
-                </Button>
+                onClick={() => this.props.onClick()}>
+                {this.props.text}
+            </button>
         )
     }
 }

@@ -9,6 +9,7 @@ export class FunButton {
             text: text,
             id: id
         }
+        this.onClick = this.onClick.bind(this)
     }
 
     onClick() {
