@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import './style.css';
-import Tickets from "../tickets/tickets";
+import DisplaySyncer from "../display-syncer/display-syncer";
 import { Switch, Route } from "react-router-dom";
-// let flag ;
-function ContentPage(props) {
 
-    const checkValidToken = () => {
-
-    }
-    useEffect(() => {
-        checkValidToken();
-    }, [])
+function ContentPage() {
     return (
         <div className="sectionRenderPage">
             <Switch>
-                <Route path="/" component={Tickets} />
+                <Route path="/" component={DisplaySyncer} />
             </Switch>
         </div>
     )
