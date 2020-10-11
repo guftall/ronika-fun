@@ -1,22 +1,143 @@
 import React from "react";
 import './style.css';
 import socketIOClient from "socket.io-client";
+import { Command } from '../../Command'
+import config from '../../config'
+import { CommandTypes, FunTypes, getRandomColor } from '../../utils'
+import FunColor from "../fun-color/fun-color";
+import FunButton from "../fun-button/fun-button";
+import FunImage from "../fun-image/fun-image";
+import FunGroup from "../fun-group/fun-group";
+import FunVideo from "../fun-video/fun-video";
+
+const CommandEvent = 'c'
 
 class DisplaySyncer extends React.Component {
+    constructor() {
+        super()
+
+        this.funQueue = []
+        this.currentExecuting = undefined
+
+        this.onExecuteQueueFun = this.onExecuteQueueFun.bind(this)
+        this.onFunExecutionFinished = this.onFunExecutionFinished.bind(this)
+        this.onConnectedToBackend = this.onConnectedToBackend.bind(this)
+        this.onFunReceived = this.onFunReceived.bind(this)
+    }
     componentDidMount() {
-        const socket = socketIOClient();
-        socket.on("FromAPI", data => {
-            console.lo('data', data)
-        });
-        socket.on('connect', () => {
-            console.log('connected')
+        this.socket = socketIOClient(config.ApiUrl)
+
+        this.socket.on('connect', this.onConnectedToBackend)
+    }
+    onConnectedToBackend() {
+
+        this.socket.on(CommandEvent, msg => {
+            var cmd = new Command(msg, this.socket)
+
+            if (cmd.type === CommandTypes.ReloadPage) {
+
+                window.location.reload()
+            } else if (cmd.type === CommandTypes.ResumeGenerator) {
+
+                // funGenerator.resumeAfterInfinite()
+            } else if (cmd.type === CommandTypes.Fun) {
+
+                const fun = cmd.parseCommandFun()
+                this.onFunReceived(fun)
+            }
         })
+    }
+    pushFunToQueue(fun) {
+        this.funQueue.push({
+            createdAt: new Date(),
+            fun: fun
+        })
+
+        if (this.currenExecuting == undefined) {
+            this.onExecuteQueueFun()
+        }
+    }
+    onExecuteQueueFun() {
+        if (this.funQueue.length == 0) {
+            this.currenExecuting = undefined
+            console.log('empty fun queue')
+            return
+        }
+
+        const fun = this.funQueue.splice(0, 1)[0]
+        fun.startedAt = new Date()
+        this.currenExecuting = fun
+
+
+        // if fun duration is zero next fun should start explicity
+        if (fun.duration === 0) {
+
+        } else {
+            this.timerId = setTimeout(() => {
+                this.onFunExecutionFinished(fun)
+
+            }, fun.fun.duration)
+        }
+
+        this.setState({
+            fun: fun.fun
+        })
+    }
+    onFunExecutionFinished(fun) {
+        fun.finishedAt = new Date()
+        this.onExecuteQueueFun()
+    }
+    createFunColor(fun) {
+        return <FunColor color={fun.variables.color} />
+    }
+    createFunButton(fun) {
+        return <FunButton text={fun.variables.text} onClick={fun.variables.onClick} />
+    }
+    createFunImage(fun) {
+        return <FunImage url={fun.variables.url} />
+    }
+    createFunGroup(fun) {
+        return <FunGroup fun={fun} />
+    }
+    createFunVideo(fun) {
+        return <FunVideo url={fun.variables.url} />
+    }
+    getFun() {
+        if (this.state == undefined || this.state.fun == undefined) {
+            return
+        }
+        const fun = this.state.fun
+        switch (fun.type) {
+            case FunTypes.Color: {
+                return this.createFunColor(fun)
+            }
+            case FunTypes.Button: {
+                return this.createFunButton(fun)
+            }
+            case FunTypes.Image: {
+                return this.createFunImage(fun)
+            }
+            case FunTypes.Group: {
+                return this.createFunGroup(fun)
+            }
+            case FunTypes.Video: {
+                return this.createFunVideo(fun)
+            }
+            default: {
+                throw new Error('invalid fun type: ' + fun.type)
+            }
+        }
+    }
+    onFunReceived(fun) {
+        console.log(fun)
+        this.pushFunToQueue(fun)
     }
     render() {
 
+        const elem = this.getFun()
         return (
             <div className="containerAll">
-
+                {elem}
             </div>
         )
     }

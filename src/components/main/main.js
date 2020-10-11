@@ -40,16 +40,8 @@ class Main extends React.Component {
         })
     }
     render() {
-        var elem
-        if (this.state.hi) {
-
-            elem = <Welcome date={this.state.date} />
-        } else {
-            elem = <Goodbye />
-        }
         return (
             <div className="mainContainer">
-                {elem}
                 <div className="sectionPanel">
                     <div className="sectionHeaderPanel">
                         <Header history={this.props.history} />
