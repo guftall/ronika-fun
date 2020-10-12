@@ -1,4 +1,4 @@
-import { CommandTypes, serverFunToOurFun } from './utils'
+import { CommandTypes, serverFunToOurFun } from '../utils'
 
 export class Command {
 

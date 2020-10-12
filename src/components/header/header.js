@@ -8,7 +8,7 @@ class Header extends React.Component {
         return (
             <React.Fragment>
                 <div className="Header-component">
-                    <p className="Header-titleHeaderPanel">رونیکا ف!ن</p>
+                    {/* <p className="Header-titleHeaderPanel">رونیکا ف!ن</p> */}
                     <Fab className="iconExit" size="small">
                         <PowerSettingsNewIcon color="secondary" />
                     </Fab>

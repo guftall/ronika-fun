@@ -1,14 +1,15 @@
 import React from "react";
 import './style.css';
 import socketIOClient from "socket.io-client";
-import { Command } from '../../Command'
+import { Command } from '../../models/Command'
 import config from '../../config'
-import { CommandTypes, FunTypes, getRandomColor } from '../../utils'
+import { CommandTypes, FunTypes, QuestionTableEventTypes } from '../../utils'
 import FunColor from "../fun-color/fun-color";
 import FunButton from "../fun-button/fun-button";
 import FunImage from "../fun-image/fun-image";
 import FunGroup from "../fun-group/fun-group";
 import FunVideo from "../fun-video/fun-video";
+import FunQuestionTable from "../question-table/question-table";
 
 const CommandEvent = 'c'
 
@@ -39,21 +40,24 @@ class DisplaySyncer extends React.Component {
                 window.location.reload()
             } else if (cmd.type === CommandTypes.ResumeGenerator) {
 
-
-                if (this.currentExecuting == undefined || this.currentExecuting.fun.duration != 0) {
-                    throw new Error('not paused on infinite fun')
-                } else if (this.funQueue.length == 0) {
-                    console.log('resume called, but there is no fun to execute')
-                    return
-                }
-
-                this.onExecuteQueueFun()
+                this.resumeInfiniteFun()
             } else if (cmd.type === CommandTypes.Fun) {
 
                 const fun = cmd.parseCommandFun()
                 this.onFunReceived(fun)
             }
         })
+    }
+    resumeInfiniteFun() {
+
+        if (this.currentExecuting === undefined || this.currentExecuting.fun.duration !== 0) {
+            throw new Error('not paused on infinite fun')
+        } else if (this.funQueue.length === 0) {
+            console.log('resume called, but there is no fun to execute')
+            return
+        }
+
+        this.onExecuteQueueFun()
     }
     onFunReceived(fun) {
         console.log(fun)
@@ -113,6 +117,9 @@ class DisplaySyncer extends React.Component {
     createFunVideo(fun) {
         return <FunVideo url={fun.variables.url} />
     }
+    createQuestionTable(fun) {
+        return <FunQuestionTable data={fun} />
+    }
     getFun() {
         if (this.state == undefined || this.state.fun == undefined) {
             return
@@ -133,6 +140,9 @@ class DisplaySyncer extends React.Component {
             }
             case FunTypes.Video: {
                 return this.createFunVideo(fun)
+            }
+            case FunTypes.QuestionTable: {
+                return this.createQuestionTable(fun)
             }
             default: {
                 throw new Error('invalid fun type: ' + fun.type)

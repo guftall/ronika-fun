@@ -4,6 +4,7 @@ import { FunImage } from './models/FunImage'
 import { FunSound } from './models/FunSound'
 import { FunVideo } from './models/FunVideo'
 import { FunGroup } from './models/FunGroup'
+import { QuestionTable } from './models/QuestionTable'
 
 export const CommandTypes = {
     ReloadPage: 'r',
@@ -17,7 +18,21 @@ export const FunTypes = {
     Image: 'i',
     Sound: 's',
     Video: 'v',
-    Group: 'g'
+    Group: 'g',
+    QuestionTable: 'q'
+}
+
+export const QuestionTableEvent = 'qte'
+export const QuestionTableAnswerEvent = 'qtae'
+
+export const QuestionTableEventTypes = {
+    OpenQuestion: 'o',
+    CloseQuestion: 'c'
+}
+
+export const QuestionTableAnswerTypes = {
+    Button: 'b',
+    Text: 't'
 }
 
 export function serverFunToOurFun(fun, socket) {
@@ -45,6 +60,44 @@ export function serverFunToOurFun(fun, socket) {
         }
         case FunTypes.Video: {
             return FunVideo.deserialize(fun)
+        }
+        case FunTypes.QuestionTable: {
+            var questionTable = QuestionTable.deserialize(fun)
+            socket.on(QuestionTableEvent, obj => {
+
+                if (obj.t === QuestionTableEventTypes.OpenQuestion) {
+                    let openQuestion = {
+                        blinkDuration: obj.bd,
+                        questionId: obj.qid,
+                        answerType: obj.at,
+                    }
+                    if (openQuestion.answerType == QuestionTableAnswerTypes.Button) {
+                        openQuestion.buttons = []
+                        for (let button of obj.b) {
+                            openQuestion.buttons.push({
+                                value: button.v
+                            })
+                        }
+                    }
+                    questionTable.onOpenQuestion(openQuestion)
+                } else if (obj.t == QuestionTableEventTypes.CloseQuestion) {
+                    let closeQuestion = {
+                        questionId: obj.qid,
+                        answer: obj.a
+                    }
+
+                    questionTable.onCloseQuestion(closeQuestion)
+                } else {
+                    throw new Error('invalid question table event type')
+                }
+            })
+            questionTable.setOnAnswerListener(data => {
+                socket.emit(QuestionTableAnswerEvent, {
+                    qid: data.questionId,
+                    a: data.answer
+                })
+            })
+            return questionTable
         }
         default: {
             throw new Error('command error: invalid fun type')
