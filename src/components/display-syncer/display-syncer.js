@@ -24,6 +24,8 @@ class DisplaySyncer extends React.Component {
         this.onFunExecutionFinished = this.onFunExecutionFinished.bind(this)
         this.onConnectedToBackend = this.onConnectedToBackend.bind(this)
         this.onFunReceived = this.onFunReceived.bind(this)
+
+        this.userIdentified = false
     }
     componentDidMount() {
         this.socket = socketIOClient(config.ApiUrl)
@@ -106,7 +108,13 @@ class DisplaySyncer extends React.Component {
         return <FunColor color={fun.variables.color} />
     }
     createFunButton(fun) {
-        return <FunButton text={fun.variables.text} onClick={fun.onClick} />
+        return <FunButton
+            disabled={this.userIdentified}
+            text={fun.variables.text}
+            onClick={e => {
+                this.userIdentified = true
+                fun.onClick(e)
+            }} />
     }
     createFunImage(fun) {
         return <FunImage url={fun.variables.url} />

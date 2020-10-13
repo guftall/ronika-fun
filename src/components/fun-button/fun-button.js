@@ -10,6 +10,7 @@ class FunButton extends React.Component {
                     width: '100px',
                     margin: 'auto auto',
                 }}
+                disabled={this.props.disabled}
                 className="btn btn-info"
                 onClick={() => this.props.onClick()}>
                 {this.props.text}
