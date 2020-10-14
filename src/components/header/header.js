@@ -9,9 +9,6 @@ class Header extends React.Component {
             <React.Fragment>
                 <div className="Header-component">
                     {/* <p className="Header-titleHeaderPanel">رونیکا ف!ن</p> */}
-                    <Fab className="iconExit" size="small">
-                        <PowerSettingsNewIcon color="secondary" />
-                    </Fab>
                 </div>
             </React.Fragment>
 

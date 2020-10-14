@@ -159,7 +159,10 @@ class DisplaySyncer extends React.Component {
     }
     render() {
 
-        const elem = this.getFun()
+        let elem = this.getFun()
+        if (elem == undefined) {
+            elem = <h2>Plase wait...</h2>
+        }
         return (
             <div className="containerAll h-100" style={{ display: 'flex' }}>
                 {elem}
