@@ -14,12 +14,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '13.10'
-    - name: Publish to Github Packages Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+    - name: Push to GitHub Packages
+      uses: docker/build-push-action@v1
       with:
-        name: guftall/ronika-fun/ronikafun
-        registry: docker.pkg.github.com
-        username: ${{ secrets.GHUSERNAME }}
+        username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        dockerfile: Dockerfile
-        tags: latest
+        registry: docker.pkg.github.com
+        repository: guftall/ronika-fun/ronikafun
+        tag_with_ref: true
