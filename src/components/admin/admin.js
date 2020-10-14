@@ -6,12 +6,10 @@ import AdminCommands from './adminCommands';
 export default class AdminComponent extends React.Component {
     constructor() {
         super()
-        this.onRestartClick = this.onRestartClick.bind(this)
+
         this.onConnectedToBackend = this.onConnectedToBackend.bind(this)
-        this.onResumeClicked = this.onResumeClicked.bind(this)
         this.onUserConnected = this.onUserConnected.bind(this)
-        // this.onStartQuestionTable = this.onStartQuestionTable(this)
-        // this.onOpenQuestions = this.onOpenQuestions.bind(this)
+
         this.restartTries = 0
         this.connectedUsers = []
     }
@@ -49,6 +47,7 @@ export default class AdminComponent extends React.Component {
         }
 
         this.connectedUsers.push(data)
+        this.command.sendResume()
         this.setState({})
     }
     onStartQuestionTable() {
@@ -56,6 +55,9 @@ export default class AdminComponent extends React.Component {
     }
     onOpenQuestions() {
         this.command.sendOpenQuestions()
+    }
+    onStartVideos() {
+        this.command.sendStartVideos()
     }
     render() {
         return (
@@ -84,7 +86,11 @@ export default class AdminComponent extends React.Component {
                     }
                 </div>
                 <div className="row">
-                    <button className="btn btn-danger" onClick={this.onRestartClick}>Restart Everything!</button>
+                    <button className="btn btn-info" onClick={() => this.onStartVideos()}>Start Videos</button>
+                    <button className="btn btn-info" onClick={() => this.command.sendExplosion()}>Explosion</button>
+                </div>
+                <div className="row">
+                    <button className="btn btn-danger" onClick={() => this.onRestartClick()}>Restart Everything!</button>
                 </div>
             </div>
         )

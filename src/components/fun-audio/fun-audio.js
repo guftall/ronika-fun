@@ -9,7 +9,7 @@ class FunAudio extends React.Component {
                 display: 'none'
             }}
             src={config.ApiUrl + this.props.url}
-            autoplay={true} />
+            autoPlay={true} />
 
         return (
             elem

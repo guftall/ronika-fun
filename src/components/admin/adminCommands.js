@@ -40,6 +40,18 @@ export default class AdminCommands {
             type: 'qt-open-question'
         })
     }
+    sendStartVideos() {
+        this.send({
+            type: 'fun',
+            fun: 'start-videos'
+        })
+    }
+    sendExplosion() {
+        this.send({
+            type: 'fun',
+            fun: 'explosion'
+        })
+    }
     send(data) {
         this.socket.emit('admin-command-32940rje', data)
     }

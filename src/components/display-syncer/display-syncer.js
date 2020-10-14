@@ -9,6 +9,7 @@ import FunButton from "../fun-button/fun-button";
 import FunImage from "../fun-image/fun-image";
 import FunGroup from "../fun-group/fun-group";
 import FunVideo from "../fun-video/fun-video";
+import FunAudio from "../fun-audio/fun-audio";
 import FunQuestionTable from "../question-table/question-table";
 
 const CommandEvent = 'c'
@@ -52,11 +53,11 @@ class DisplaySyncer extends React.Component {
     }
     resumeInfiniteFun() {
 
-        if (this.currentExecuting === undefined || this.currentExecuting.fun.duration !== 0) {
-            throw new Error('not paused on infinite fun')
+        if (this.currentExecuting == undefined || this.currentExecuting.fun.duration !== 0) {
+            console.log('not paused on infinite fun')
+            return
         } else if (this.funQueue.length === 0) {
             console.log('resume called, but there is no fun to execute')
-            return
         }
 
         this.onExecuteQueueFun()
@@ -125,6 +126,9 @@ class DisplaySyncer extends React.Component {
     createFunVideo(fun) {
         return <FunVideo url={fun.variables.url} />
     }
+    createFunAudio(fun) {
+        return <FunAudio url={fun.variables.url} />
+    }
     createQuestionTable(fun) {
         return <FunQuestionTable data={fun} />
     }
@@ -145,6 +149,9 @@ class DisplaySyncer extends React.Component {
             }
             case FunTypes.Group: {
                 return this.createFunGroup(fun)
+            }
+            case FunTypes.Sound: {
+                return this.createFunAudio(fun)
             }
             case FunTypes.Video: {
                 return this.createFunVideo(fun)
