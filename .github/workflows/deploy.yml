@@ -16,5 +16,5 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         registry: dr.rstaging.alimarddev.ir
-        repository: ronikafun:latest
+        repository: ronikafun
         tag_with_ref: true
