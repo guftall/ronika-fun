@@ -10,6 +10,8 @@ export default class AdminComponent extends React.Component {
         this.onConnectedToBackend = this.onConnectedToBackend.bind(this)
         this.onResumeClicked = this.onResumeClicked.bind(this)
         this.onUserConnected = this.onUserConnected.bind(this)
+        // this.onStartQuestionTable = this.onStartQuestionTable(this)
+        // this.onOpenQuestions = this.onOpenQuestions.bind(this)
         this.restartTries = 0
         this.connectedUsers = []
     }
@@ -49,6 +51,12 @@ export default class AdminComponent extends React.Component {
         this.connectedUsers.push(data)
         this.setState({})
     }
+    onStartQuestionTable() {
+        this.command.sendStartQuestionTable()
+    }
+    onOpenQuestions() {
+        this.command.sendOpenQuestions()
+    }
     render() {
         return (
             <div className="container">
@@ -63,9 +71,15 @@ export default class AdminComponent extends React.Component {
                     </div>
                 </div>
                 <div className="row">
+
+                    <button className="btn btn-primary" onClick={() => this.onStartQuestionTable()} >Question Table</button>
+                    <button className="btn btn-primary" onClick={() => this.onOpenQuestions()} >Open Questions</button>
+
+                </div>
+                <div className="row">
                     {this.connectedUsers.map(user =>
                         (
-                            <div>{user.id}, {user.name}</div>
+                            <div className="col-md">{user.id}, {user.name}</div>
                         ))
                     }
                 </div>

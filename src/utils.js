@@ -22,6 +22,11 @@ export const FunTypes = {
     QuestionTable: 'q'
 }
 
+export const ButtonAction = {
+    Default: 'd',
+    Jigh: 'j',
+}
+
 export const QuestionTableEvent = 'qte'
 export const QuestionTableAnswerEvent = 'qtae'
 
@@ -75,7 +80,8 @@ export function serverFunToOurFun(fun, socket) {
                         openQuestion.buttons = []
                         for (let button of obj.b) {
                             openQuestion.buttons.push({
-                                value: button.v
+                                value: button.v,
+                                action: button.a
                             })
                         }
                     }

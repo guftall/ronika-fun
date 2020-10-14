@@ -90,7 +90,7 @@ class FunQuestionTable extends React.Component {
 
         let questionElem
         if (this.currentOpenQuestion != undefined) {
-            questionElem = <Question onAnswer={this.onQuestionAnswered} question={this.currentQuestion} openQuestion={this.currentOpenQuestion} />
+            questionElem = <Question myUserId={this.state.questionTable.myUserId} onAnswer={this.onQuestionAnswered} question={this.currentQuestion} openQuestion={this.currentOpenQuestion} />
         }
         return (
             <div className="container">

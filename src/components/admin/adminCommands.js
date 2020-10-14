@@ -29,6 +29,17 @@ export default class AdminCommands {
             type: 'init'
         })
     }
+    sendStartQuestionTable() {
+        this.send({
+            type: 'fun',
+            fun: 'start-question-table'
+        })
+    }
+    sendOpenQuestions() {
+        this.send({
+            type: 'qt-open-question'
+        })
+    }
     send(data) {
         this.socket.emit('admin-command-32940rje', data)
     }

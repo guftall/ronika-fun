@@ -1,5 +1,6 @@
 import React from 'react'
-import { QuestionTableAnswerTypes } from '../../utils'
+import config from '../../config'
+import { ButtonAction, QuestionTableAnswerTypes } from '../../utils'
 
 export class Question extends React.Component {
     constructor(props) {
@@ -10,13 +11,25 @@ export class Question extends React.Component {
             throw new Error('onAnswer callback is undefined')
         }
         this.state = {
-            inputValue: ''
+            inputValue: '',
+            playAudio: false
         }
         this.updateInputValue = this.updateInputValue.bind(this)
         this.onButtonClicked = this.onButtonClicked.bind(this)
+        this.audio = new Audio(`${config.ApiUrl}/assets/aud/falling.mp3`)
     }
-    onButtonClicked(value) {
-        this.props.onAnswer(this.question.questionId, value)
+    onButtonClicked(action, value) {
+        if (action == ButtonAction.Default) {
+
+            this.props.onAnswer(this.question.questionId, value)
+        } else {
+            this.audio.play()
+            setTimeout(() => {
+
+                this.audio.pause()
+                this.audio.currentTime = 0
+            }, 1000)
+        }
     }
     updateInputValue(value) {
         this.setState({
@@ -35,8 +48,9 @@ export class Question extends React.Component {
                 let btn = <div key={`qbtn-${i++}`} style={{ marginTop: '60px' }} className="col-md-4">
                     <button
                         className="btn btn-primary"
-                        onClick={() => this.onButtonClicked(b.value)}
-                        style={{ height: '80px', width: '120px', fontSize: '25px' }}>{b.value}</button>
+                        onClick={() => this.onButtonClicked(b.action, b.value)}
+                        disabled={this.question.userId != this.props.myUserId}
+                        style={{ height: '80px', minWidth: '120px', fontSize: '25px' }}>{b.value}</button>
                 </div>
                 elems.push(btn)
             }
