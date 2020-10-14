@@ -14,11 +14,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '13.10'
-    - name: Install yarn
-      run: |
-        yarn
-      env:
-        CI: true
     - name: Publish to Github Packages Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
